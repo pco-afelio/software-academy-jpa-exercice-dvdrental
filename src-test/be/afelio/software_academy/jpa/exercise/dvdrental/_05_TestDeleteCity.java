@@ -42,7 +42,7 @@ class _05_TestDeleteCity {
 		String name = String.valueOf(System.currentTimeMillis());
 		dbUtils.insertCity(name, 34);
 		try {
-			boolean deleted = repository.deleteCity(String.valueOf(System.currentTimeMillis()), "Finland");
+			boolean deleted = repository.deleteCity(name, "Finland");
 			assertFalse(deleted);
 		} catch(Exception e) {
 			throw e;
