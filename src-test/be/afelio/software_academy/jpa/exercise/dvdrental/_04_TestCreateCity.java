@@ -104,9 +104,11 @@ class _04_TestCreateCity {
 		String name = String.valueOf(System.currentTimeMillis());
 		dbUtils.insertCity(name, 34);
 		try {
-			repository.createCity(name, "France");
+			assertThrows(DuplicatedCityException.class, () -> repository.createCity(name, "France"));
+		} catch(Exception e) {
+			throw new RuntimeException(e);
+		} finally {
 			dbUtils.deleteCity(name);
-			fail("DuplicatedCityException was expected");
-		} catch (DuplicatedCityException e) {} 
+		}
 	}
 }
